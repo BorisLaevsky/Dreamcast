@@ -1,6 +1,3 @@
-def Names():
-    name = raw_input()
-    list_of_names = name.split(",")
-    print list_of_names
+import sys
 
-Names()
+print sys.argv
