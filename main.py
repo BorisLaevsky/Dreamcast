@@ -15,14 +15,13 @@ if __name__ == "__main__":
             output += word[:-1] + "+"
             r = requests.get("http://www.imdb.com/find?ref_=nv_sr_fn&q=" + output[:-1] + "&s=all")
             text = r.text
-	    print r.url
+	    print r.url 
 	    soup = BeautifulSoup(text, "html.parser")
-	    items = soup.find_all(attrs={'class': 'findResult odd'})   
-            link = items[0].find_all('a')
-            actor_url = link[0].get('href')
-            list_of_actors_urls.append(str("http://www.imdb.com" + actor_url))
-            
+            class_with_urls = soup.find(attrs = {'class': 'findResult odd'})
+            link = class_with_urls.find('a').get('href')
+            list_of_actors_urls.append(str("http://www.imdb.com" + link)) 
             output = ""
+    
     print list_of_actors_urls
         
         
