@@ -1,7 +1,8 @@
-.git
-Include
-Lib
-Scripts
-tcl
-README.md
+bin
+include
+lib 
+local
+main.py
 pip-selfcheck.json
+
+
