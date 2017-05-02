@@ -13,12 +13,10 @@ if __name__ == "__main__":
             output += word + "+"
         else:
             output += word[:-1] + "+"
-            r = requests.get("http://www.imdb.com/find?ref_=nv_sr_fn&q=" + output[:-1] + "&s=all")
-            text = r.text
+            r = requests.get("http://www.imdb.com/find?ref_=nv_sr_fn&q=" + output[:-1] + "&s=all") 
 	    print r.url 
-	    soup = BeautifulSoup(text, "html.parser")
-            class_with_urls = soup.find(attrs = {'class': 'findResult odd'})
-            link = class_with_urls.find('a').get('href')
+	    soup = BeautifulSoup(r.text, "html.parser")
+            link = soup.find(attrs = {'class': 'findResult odd'}).find('a').get('href')
             list_of_actors_urls.append(str("http://www.imdb.com" + link)) 
             output = ""
     
