@@ -24,8 +24,7 @@ def find_movie_names(url):
     return [link.get_text() for link in links]                
 
 def find_common_movies(list_of_names):
-    output = [set(find_movie_names(url)) for url in find_actors_url(list_of_names)]
-    return list(reduce((lambda x, y: x & y), output)) 
+    return list(reduce((lambda x, y: x & y), [set(find_movie_names(url)) for url in find_actors_url(list_of_names)]))
 
 if __name__ == "__main__":
    
