@@ -21,11 +21,9 @@ def find_movie_names(url):
     r = requests.get(url)
     soup = BeautifulSoup(r.text, "html.parser")    
     links = soup.find(attrs = {'class': 'filmo-category-section'}).find_all('b')
-    output_list = [link.get_text() for link in links]                
-    return output_list            
+    return [link.get_text() for link in links]                
 
 def find_common_movies(list_of_names):
-    output = []
     output = [set(find_movie_names(url)) for url in find_actors_url(list_of_names)]
     return list(reduce((lambda x, y: x & y), output)) 
 
